@@ -1,0 +1,26 @@
+{
+    "name": "네코루네일 - Nekorunail",
+    "short_name": "네코루네일",
+    "description": "갸루×힙스터 감성의 프리미엄 네일샵",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#09080D",
+    "theme_color": "#A62145",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/images/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["lifestyle", "beauty"],
+    "lang": "ko"
+}

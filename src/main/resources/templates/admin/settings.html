@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설정 - 네코루네일 Admin</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <a th:href="@{/}">
+                    <img th:src="@{/images/favicon.png}" alt="Nekorunail">
+                    <span>NEKORUNAIL</span>
+                </a>
+            </div>
+            <nav class="admin-nav">
+                <a th:href="@{/admin/dashboard}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    대시보드
+                </a>
+                <a th:href="@{/admin/gallery}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    갤러리 관리
+                </a>
+                <a th:href="@{/admin/reviews}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    리뷰 관리
+                </a>
+                <a th:href="@{/admin/settings}" class="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    설정
+                </a>
+                <a th:href="@{/admin/logout}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    로그아웃
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="admin-content">
+            <div class="admin-header">
+                <h1 class="admin-title">설정</h1>
+            </div>
+            
+            <div class="admin-card">
+                <h2 class="admin-card-title">AI 챗봇 말투 설정</h2>
+                <form th:action="@{/admin/settings/ai-prompt}" method="post">
+                    <div class="form-group">
+                        <label class="form-label" for="aiPrompt">시스템 프롬프트</label>
+                        <textarea id="aiPrompt" name="aiPrompt" class="form-textarea" style="min-height: 300px;" th:text="${aiPrompt}" placeholder="AI 챗봇의 성격과 말투를 설정하세요..."></textarea>
+                        <p style="font-size: 12px; color: rgba(9,8,13,0.5); margin-top: 8px;">
+                            AI가 응답할 때 사용할 성격, 말투, 정보 등을 설정합니다.<br>
+                            비워두면 기본 갸루톤 프롬프트가 적용됩니다.
+                        </p>
+                    </div>
+                    
+                    <button type="submit" class="btn-admin btn-admin-primary">저장</button>
+                </form>
+            </div>
+            
+            <div class="admin-card">
+                <h2 class="admin-card-title">빠른 프롬프트 템플릿</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button type="button" class="btn-admin btn-admin-secondary" onclick="setPromptTemplate('gyaru')">갸루톤 💕</button>
+                    <button type="button" class="btn-admin btn-admin-secondary" onclick="setPromptTemplate('professional')">전문적 ✨</button>
+                    <button type="button" class="btn-admin btn-admin-secondary" onclick="setPromptTemplate('friendly')">친근한 🌸</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const templates = {
+            gyaru: `넌 네코루네일의 갸루 감성 AI 어시스턴트야~ ✨
+말투는 친근하고 귀엽게, 이모지 적당히 써줘!
+
+네일샵 정보:
+- 이름: 네코루네일 (Nekorunail)
+- 컨셉: 갸루×힙스터 감성의 프리미엄 네일샵
+- 예약: 네이버 예약으로 받고 있어
+
+가격 안내:
+- 젤 기본 (원컬러): 40,000원~
+- 젤 연장: 60,000원~
+- 아트 (심플): +5,000원~
+- 아트 (풀아트): +20,000원~
+- 스톤/파츠: 개당 500원~
+
+할 수 있는 것:
+1. 오늘의 무드에 맞는 네일 추천
+2. 피부톤별 컬러 추천
+3. 시술 종류 설명
+4. 가격 안내
+5. 위치/교통 안내
+
+항상 밝고 친근하게 응대해줘! 💅`,
+            
+            professional: `네코루네일 고객 상담 AI입니다.
+정확하고 전문적인 정보를 제공합니다.
+
+[네일샵 정보]
+- 상호: 네코루네일
+- 예약: 네이버 예약
+
+[가격 안내]
+- 젤 기본: 40,000원~
+- 연장: 60,000원~
+- 아트: +5,000원~
+
+고객님의 문의에 정확하고 친절하게 답변드리겠습니다.`,
+            
+            friendly: `안녕하세요! 네코루네일입니다 🌸
+편하게 물어봐주세요~
+
+저희 샵은 갸루×힙스터 감성의 네일샵이에요.
+가격, 예약, 디자인 추천 등 뭐든 도와드릴게요!
+
+가격은 젤 기본 4만원부터 시작해요.
+궁금한 거 있으시면 편하게 물어봐주세요! 💕`
+        };
+        
+        function setPromptTemplate(type) {
+            document.getElementById('aiPrompt').value = templates[type];
+        }
+    </script>
+</body>
+</html>

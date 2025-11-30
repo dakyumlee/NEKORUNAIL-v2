@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="NEKORU NAIL - 부산 서면 네일샵">
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">NEKORU</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon.png}">
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}">
+    <link rel="manifest" th:href="@{/manifest.json}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dot-pattern"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a th:href="@{/}" class="logo">
+                    <img th:src="@{/images/favicon.png}" alt="Nekoru" class="logo-icon">
+                    <span class="logo-text">NEKORU</span>
+                </a>
+                <button class="nav-toggle" aria-label="메뉴">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav">
+        <a th:href="@{/}">HOME</a>
+        <a th:href="@{/gallery}">GALLERY</a>
+        <a th:href="@{/price}">PRICE</a>
+        <a th:href="@{/location}">LOCATION</a>
+        <a th:href="@{/review}">REVIEW</a>
+    </nav>
+    
+    <main layout:fragment="content">
+    </main>
+    
+    <button class="chatbot-toggle" aria-label="AI 챗봇">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+    
+    <div class="chatbot-panel">
+        <div class="chatbot-header">
+            <div class="chatbot-title">NEKORU AI</div>
+            <div class="chatbot-status">무엇이든 물어보세요</div>
+        </div>
+        <div class="chatbot-messages"></div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="메시지 입력...">
+            <button aria-label="전송">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img th:src="@{/images/favicon.png}" alt="Nekoru">
+                <span>NEKORU</span>
+            </div>
+            <div class="footer-links">
+                <a th:href="@{/}">HOME</a>
+                <a th:href="@{/gallery}">GALLERY</a>
+                <a th:href="@{/price}">PRICE</a>
+                <a th:href="@{/location}">LOCATION</a>
+            </div>
+            <p class="footer-copyright">© 2025 NEKORU NAIL. oicrcutie - All rights reserved.</p>
+            <a th:href="@{/admin/login}" class="admin-link" aria-label="관리자">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </a>
+        </div>
+    </footer>
+    
+    <div class="install-prompt">
+        <button class="install-close" aria-label="닫기">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="install-content">
+            <img th:src="@{/images/favicon.png}" alt="" class="install-icon">
+            <div class="install-text">
+                <div class="install-title">홈 화면에 추가</div>
+                <div class="install-desc">앱처럼 빠르게 접속</div>
+            </div>
+            <button class="btn btn-primary install-btn">추가</button>
+        </div>
+    </div>
+    
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

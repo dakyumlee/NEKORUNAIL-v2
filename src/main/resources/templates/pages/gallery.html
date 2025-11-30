@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout/base}" lang="ko">
+<head>
+    <title>GALLERY</title>
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            max-width: 500px;
+            width: 100%;
+            background: var(--white);
+            border: 3px solid var(--black);
+            position: relative;
+        }
+        .modal-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+        .modal-info {
+            padding: 20px;
+            border-top: 2px solid var(--black);
+        }
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .modal-desc {
+            font-size: 13px;
+            color: rgba(26,26,26,0.7);
+            line-height: 1.6;
+        }
+        .modal-tags {
+            margin-top: 12px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .modal-tag {
+            font-size: 10px;
+            padding: 4px 10px;
+            background: var(--black);
+            color: var(--cream);
+            letter-spacing: 1px;
+        }
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 32px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<main layout:fragment="content">
+    <section style="padding-top: 40px; padding-bottom: 60px;">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">GALLERY</p>
+                <h2 class="section-title">네일 갤러리</h2>
+            </div>
+            
+            <div class="color-tags">
+                <button class="color-tag active" data-filter="all">ALL</button>
+                <button class="color-tag" th:each="cat : ${categories}" th:data-filter="${cat.name}" th:text="${cat.displayName}">카테고리</button>
+            </div>
+            
+            <div class="gallery-grid" th:if="${galleryItems != null and !galleryItems.isEmpty()}">
+                <div class="gallery-item" 
+                     th:each="item : ${galleryItems}" 
+                     th:data-tags="${item.colorTags}"
+                     th:data-image="${item.imageUrl}"
+                     th:data-title="${item.title}"
+                     th:data-desc="${item.description}"
+                     th:data-taglist="${item.tags}"
+                     onclick="openModal(this)">
+                    <img th:src="${item.imageUrl}" th:alt="${item.title}">
+                </div>
+            </div>
+            
+            <div class="empty-state" th:if="${galleryItems == null or galleryItems.isEmpty()}">
+                <p class="empty-state-text">COMING SOON</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="modal-overlay" id="galleryModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-tags" id="modalTags"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(el) {
+            var imageUrl = el.dataset.image || '';
+            var title = el.dataset.title || '';
+            var desc = el.dataset.desc || '';
+            var tags = el.dataset.taglist || '';
+            
+            document.getElementById('modalImage').src = imageUrl;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDesc').textContent = desc;
+            
+            var tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            if (tags) {
+                tags.split(',').forEach(function(tag) {
+                    if (tag.trim()) {
+                        var span = document.createElement('span');
+                        span.className = 'modal-tag';
+                        span.textContent = tag.trim();
+                        tagsContainer.appendChild(span);
+                    }
+                });
+            }
+            
+            document.getElementById('galleryModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('galleryModal')) {
+                document.getElementById('galleryModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+        
+        document.querySelectorAll('.color-tag').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.color-tag').forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                var filter = this.dataset.filter;
+                document.querySelectorAll('.gallery-item').forEach(function(item) {
+                    if (filter === 'all' || (item.dataset.tags && item.dataset.tags.includes(filter))) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</main>
+</body>
+</html>

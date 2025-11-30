@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리 추가/수정 - NEKORU Admin</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <a th:href="@{/}">
+                    <img th:src="@{/images/favicon.png}" alt="Nekoru">
+                    <span>NEKORU</span>
+                </a>
+            </div>
+            <nav class="admin-nav">
+                <a th:href="@{/admin/dashboard}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    DASHBOARD
+                </a>
+                <a th:href="@{/admin/gallery}" class="active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    GALLERY
+                </a>
+                <a th:href="@{/admin/categories}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                    CATEGORY
+                </a>
+                <a th:href="@{/admin/reviews}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    REVIEW
+                </a>
+                <a th:href="@{/admin/settings}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    SETTINGS
+                </a>
+                <form th:action="@{/admin/logout}" method="post" style="margin: 0;">
+                    <button type="submit" style="all: unset; display: flex; align-items: center; gap: 12px; padding: 14px 20px; color: rgba(245,240,232,0.6); font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; width: 100%;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        LOGOUT
+                    </button>
+                </form>
+            </nav>
+        </aside>
+        
+        <main class="admin-content">
+            <div class="admin-header">
+                <h1 class="admin-title" th:text="${item.id != null} ? 'EDIT GALLERY' : 'NEW GALLERY'">NEW GALLERY</h1>
+            </div>
+            
+            <div class="admin-card">
+                <form th:action="@{/admin/gallery/save}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" th:field="*{item.id}">
+                    
+                    <div class="form-group">
+                        <label class="form-label">이미지</label>
+                        <input type="file" name="imageFile" class="form-input" accept="image/*" th:required="${item.id == null}">
+                        <img th:if="${item.imageUrl}" th:src="${item.imageUrl}" class="preview-image" alt="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">제목</label>
+                        <input type="text" th:field="*{item.title}" class="form-input" placeholder="예: 도트 네일">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">설명</label>
+                        <textarea th:field="*{item.description}" class="form-textarea" placeholder="디자인에 대한 간단한 설명을 입력하세요"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">태그 (쉼표로 구분)</label>
+                        <input type="text" th:field="*{item.tags}" class="form-input" placeholder="예: 도트, 블랙, 화이트">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">카테고리 (필터용, 쉼표로 구분)</label>
+                        <input type="text" th:field="*{item.colorTags}" class="form-input" placeholder="예: dot, black">
+                        <p style="font-size: 11px; color: rgba(26,26,26,0.5); margin-top: 6px;">
+                            등록된 카테고리: 
+                            <span th:each="cat, iter : ${categories}">
+                                <span th:text="${cat.name}">cat</span><span th:if="${!iter.last}">, </span>
+                            </span>
+                        </p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">정렬 순서</label>
+                        <input type="number" th:field="*{item.displayOrder}" class="form-input" placeholder="숫자가 작을수록 앞에 표시">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-checkbox">
+                            <input type="checkbox" th:field="*{item.featured}">
+                            <span>추천 이미지</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-checkbox">
+                            <input type="checkbox" th:field="*{item.monthlyPick}">
+                            <span>이달의 네일</span>
+                        </label>
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px; margin-top: 32px;">
+                        <button type="submit" class="btn-admin btn-admin-primary">저장</button>
+                        <a th:href="@{/admin/gallery}" class="btn-admin btn-admin-secondary">취소</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

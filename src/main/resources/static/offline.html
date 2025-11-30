@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오프라인 - 네코루네일</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .offline-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(180deg, var(--midnight) 0%, rgba(115,18,44,0.6) 100%);
+        }
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+            color: var(--sand);
+        }
+        .offline-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+        .offline-text {
+            font-size: 14px;
+            color: rgba(250,248,245,0.7);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .offline-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-page">
+        <svg class="offline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
+        </svg>
+        <h1 class="offline-title">오프라인 모드</h1>
+        <p class="offline-text">
+            인터넷 연결이 없어요 😢<br>
+            가격표는 오프라인에서도 볼 수 있어요!
+        </p>
+        <div class="offline-links">
+            <a href="/price" class="btn btn-primary">가격표 보기</a>
+            <button class="btn btn-secondary" onclick="location.reload()">다시 시도</button>
+        </div>
+    </div>
+</body>
+</html>

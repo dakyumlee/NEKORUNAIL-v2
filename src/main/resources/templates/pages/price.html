@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout/base}" lang="ko">
+<head>
+    <title>가격표</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <section class="price-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label" style="color: var(--sand);">Price</p>
+                <h2 class="section-title">가격 안내</h2>
+            </div>
+            
+            <div class="price-list">
+                <div class="price-category">
+                    <h3 class="price-category-title">기본 서비스</h3>
+                    <p style="font-size: 12px; color: var(--sand); margin-bottom: 12px;">※ pedi + 10,000원</p>
+                    <div class="price-item">
+                        <span class="price-name">젤 기본</span>
+                        <span class="price-value">40,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">오버레이·굳은살 케어 s/v, 컬러 추가</span>
+                        <span class="price-value">free</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">자석젤</span>
+                        <span class="price-value">55,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">옴브레, 프렌치</span>
+                        <span class="price-value">60,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">레퍼런스 아트·프리핸드 아트</span>
+                        <span class="price-value">상담 후 가격 안내</span>
+                    </div>
+                    <p class="price-note" style="border-top: none; padding-top: 8px;">
+                        ↳ 대략적인 아트 가이드 or 레퍼런스 이미지 전송 부탁드립니다.
+                    </p>
+                </div>
+                
+                <div class="price-category">
+                    <h3 class="price-category-title">케어 서비스</h3>
+                    <div class="price-item">
+                        <span class="price-name">손 케어</span>
+                        <span class="price-value">15,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">발 케어</span>
+                        <span class="price-value">20,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">자샵 제거</span>
+                        <span class="price-value">5,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">자샵 only 제거</span>
+                        <span class="price-value">10,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">타샵 제거</span>
+                        <span class="price-value">10,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">타샵 연장·파츠·하드 제거 1ea</span>
+                        <span class="price-value">1,000~</span>
+                    </div>
+                </div>
+                
+                <div class="price-category">
+                    <h3 class="price-category-title">연장 서비스</h3>
+                    <div class="price-item">
+                        <span class="price-name">팁 연장 · 1ea</span>
+                        <span class="price-value">10,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">팁 전체 연장</span>
+                        <span class="price-value">80,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">젤 연장 · 1ea</span>
+                        <span class="price-value">12,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">젤 전체 연장</span>
+                        <span class="price-value">100,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">연장 리페어 (자샵)</span>
+                        <span class="price-value">free</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">연장 리페어 (타샵) · 1ea</span>
+                        <span class="price-value">2,000원</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">캡핑 · 1ea</span>
+                        <span class="price-value">5,000원</span>
+                    </div>
+                </div>
+                
+                <div class="price-category" style="background: linear-gradient(135deg, rgba(166,33,69,0.2) 0%, rgba(115,18,44,0.2) 100%); border: 1px solid rgba(166,33,69,0.3);">
+                    <h3 class="price-category-title">🎁 3회 재방문 리워드 혜택</h3>
+                    <p style="font-size: 13px; color: var(--cream); line-height: 1.8;">
+                        젤 기본 3회 시 <strong style="color: var(--sand);">10,000원 할인권</strong> 증정<br>
+                        아트 시술 3회 시 <strong style="color: var(--sand);">20,000원 할인권</strong> 증정<br><br>
+                        할인권 혜택을 받으신 후에도 다시 카운트가 시작되며,<br>
+                        지속적으로 혜택을 받을 수 있습니다.
+                    </p>
+                    <p class="price-note">※ 카드 결제 only 불가</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

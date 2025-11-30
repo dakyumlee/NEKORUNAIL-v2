@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+      layout:decorate="~{layout/base}" lang="ko">
+<head>
+    <title>NEKORU</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <section class="hero">
+        <div class="hero-content">
+            <img th:src="@{/images/favicon.png}" alt="Nekoru" class="hero-logo">
+            <p class="hero-subtitle">· NAIL STUDIO ·</p>
+            <h1 class="hero-title">NEKORU</h1>
+            <p class="hero-desc">
+                부산 서면<br>
+                당신만의 특별한 네일 아트
+            </p>
+            <a th:href="${naverBookingUrl}" class="btn btn-primary" target="_blank" rel="noopener">
+                NAVER 예약
+            </a>
+        </div>
+    </section>
+    
+    <section class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">ABOUT</p>
+                <h2 class="section-title">네코루 소개</h2>
+            </div>
+            <div class="about-content">
+                <p class="about-text">
+                    도트, 크로스, 캐릭터 아트부터<br>
+                    심플한 원컬러까지<br>
+                    당신만의 개성을 담은 네일을 완성합니다
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="monthly-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">MONTHLY</p>
+                <h2 class="section-title">이달의 네일</h2>
+            </div>
+            <div class="monthly-grid" th:if="${monthlyPicks != null and !monthlyPicks.isEmpty()}">
+                <div class="nail-card" th:each="item : ${monthlyPicks}">
+                    <img th:src="${item.imageUrl}" th:alt="${item.title}">
+                    <div class="nail-card-overlay">
+                        <p class="nail-card-title" th:text="${item.title}">네일 디자인</p>
+                        <span class="nail-card-tag" th:if="${item.tags}" th:text="${item.tags}">태그</span>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-state" th:if="${monthlyPicks == null or monthlyPicks.isEmpty()}">
+                <p class="empty-state-text">COMING SOON</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="review-section" th:if="${featuredReviews != null and !featuredReviews.isEmpty()}">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">REVIEW</p>
+                <h2 class="section-title">고객 후기</h2>
+            </div>
+            <div th:each="review : ${featuredReviews}">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar" th:text="${#strings.substring(review.customerName, 0, 1)}">K</div>
+                        <div>
+                            <p class="review-name" th:text="${review.customerName}">고객명</p>
+                            <div class="review-rating">
+                                <span th:each="i : ${#numbers.sequence(1, review.rating != null ? review.rating : 5)}">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-content" th:text="${review.content}">리뷰 내용</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
