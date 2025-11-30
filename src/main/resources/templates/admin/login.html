@@ -3,33 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 - 네코루네일 Admin</title>
+    <title>로그인 - NEKORU Admin</title>
     <link rel="icon" type="image/png" th:href="@{/images/favicon.png}">
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/fonts.css}">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 360px;
+            background: #f5f0e8;
+            border: 3px solid #d4a574;
+            padding: 48px 32px;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .login-header img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+        }
+        .login-header h1 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .login-header p {
+            font-size: 12px;
+            color: #8b7355;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 2px solid #1a1a1a;
+            background: #fffef9;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #d4a574;
+            background: #fff;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: inherit;
+            letter-spacing: 1px;
+            background: #1a1a1a;
+            color: #f5f0e8;
+            border: 2px solid #1a1a1a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+        .btn-login:hover {
+            background: #8b5a2b;
+            border-color: #8b5a2b;
+        }
+        .error-msg {
+            background: #c0392b;
+            color: white;
+            padding: 12px;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #8b7355;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #1a1a1a;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-page">
-        <div class="login-card">
-            <img th:src="@{/images/favicon.png}" alt="Nekorunail" class="login-logo">
-            <h1 class="login-title">관리자 로그인</h1>
-            <p class="login-subtitle">네코루네일 Admin</p>
-            
-            <div class="login-error" th:if="${param.error}">
-                아이디 또는 비밀번호가 올바르지 않습니다.
-            </div>
-            
-            <form class="login-form" th:action="@{/admin/login}" method="post">
-                <div class="form-group">
-                    <label class="form-label" for="username">아이디</label>
-                    <input type="text" id="username" name="username" class="form-input" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" class="form-input" required>
-                </div>
-                <button type="submit" class="btn-admin btn-admin-primary login-btn">로그인</button>
-            </form>
+    <div class="login-card">
+        <div class="login-header">
+            <img th:src="@{/images/favicon.png}" alt="Nekoru">
+            <h1>NEKORU ADMIN</h1>
+            <p>관리자 로그인</p>
         </div>
+        
+        <div class="error-msg" th:if="${param.error}">
+            아이디 또는 비밀번호가 틀렸습니다.
+        </div>
+        
+        <form th:action="@{/admin/login}" method="post">
+            <div class="form-group">
+                <label class="form-label">아이디</label>
+                <input type="text" name="username" class="form-input" required autofocus>
+            </div>
+            <div class="form-group">
+                <label class="form-label">비밀번호</label>
+                <input type="password" name="password" class="form-input" required>
+            </div>
+            <button type="submit" class="btn-login">로그인</button>
+        </form>
+        
+        <a th:href="@{/}" class="back-link">← 사이트로 돌아가기</a>
     </div>
 </body>
 </html>
